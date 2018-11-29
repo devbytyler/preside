@@ -26,7 +26,7 @@ SECRET_KEY = 'elu@g!)gko44ykl0tu=*@rx9%3^ihkeszcv(vga42mb!qa36zb'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '8d64c5c7.ngrok.io',
+    'Preside-env.9getsfiums.us-west-2.elasticbeanstalk.com,
 ]
 
 
@@ -80,10 +80,10 @@ DB_ENGINE = 'django.db.backends.mysql'
 DB_NAME = 'preside'
 DB_USER = 'preside'
 DB_PASSWORD = '123'
+
 if 'IS_AWS' in os.environ:
-    DB_HOST = 'catalyst.c6nkhhnul1tm.us-west-2.rds.amazonaws.com'
+    DB_HOST = 'preside.c6nkhhnul1tm.us-west-2.rds.amazonaws.com'
 else:
-    DB_HOST = '127.0.0.1'
     DB_HOST = 'localhost'
 
 DATABASES = {
