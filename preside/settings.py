@@ -27,19 +27,20 @@ DEBUG = True
 
 ALLOWED_HOSTS = [
     'Preside-env.9getsfiums.us-west-2.elasticbeanstalk.com',
+    'localhost'
 ]
 
 
 # Application definition
 
 INSTALLED_APPS = [
+    'app',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'django.contrib.staticfiles',
-    'app'
+    'django.contrib.staticfiles'
 ]
 
 MIDDLEWARE = [
