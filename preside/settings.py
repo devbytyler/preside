@@ -26,7 +26,7 @@ SECRET_KEY = 'elu@g!)gko44ykl0tu=*@rx9%3^ihkeszcv(vga42mb!qa36zb'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'Preside-env.9getsfiums.us-west-2.elasticbeanstalk.com,
+    'Preside-env.9getsfiums.us-west-2.elasticbeanstalk.com',
 ]
 
 
