@@ -26,7 +26,7 @@ SECRET_KEY = 'elu@g!)gko44ykl0tu=*@rx9%3^ihkeszcv(vga42mb!qa36zb'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    '',
+    'preside-dev.9getsfiums.us-west-2.elasticbeanstalk.com',
     'localhost',
     'df72a7d9.ngrok.io'
 ]
@@ -84,7 +84,7 @@ DB_USER = 'preside'
 DB_PASSWORD = '123'
 
 if 'IS_AWS' in os.environ:
-    DB_HOST = 'preside.c6nkhhnul1tm.us-west-2.rds.amazonaws.com'
+    DB_HOST = 'aaydpdgf6hwm14.cbfpqycon4bt.us-west-2.rds.amazonaws.com'
     DB_PASSWORD = 'abc123456'
 else:
     DB_HOST = 'localhost'
