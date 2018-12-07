@@ -1,0 +1,12 @@
+$lightGray: #eee;
+$darkGray: #2C3842;
+
+body {
+    background-color: $darkGray;
+}
+
+.person-card {
+    .person-image {
+        border-radius: 50%;
+    }
+}

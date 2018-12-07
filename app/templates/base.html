@@ -9,15 +9,18 @@
 
     <title>{% if title %}{% block title %}{% endblock %} | {% endif %}Preside</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-    <link rel="stylesheet" href="{% static 'app/css/style.css' %}">
+    <link rel="stylesheet" href="{% static 'app/style.css' %}">
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,400i,600,700" rel="stylesheet" type="text/css">
 </head>
 
 <body>
     <div class="main-nav-wrapper">
         <div class="main-nav-container container navbar navbar-dark navbar-expand-lg">
-            <a href="{% url 'index' %}">
+            <a href="{% url 'persons' %}">
                 Preside
+            </a>
+            <a href="#">
+                Meetings
             </a>
         </div>
     </div>
@@ -26,10 +29,8 @@
         <div class="main-panel main-panel-big">
             <div class="container py-4">
                 {% block body %}
-                    <div class="card">
-                        <div class="content">
-                            {% block content %}{% endblock content %}
-                        </div>
+                    <div class="content">
+                        {% block content %}{% endblock content %}
                     </div>
                 {% endblock body %}
             </div>

@@ -7,21 +7,42 @@ from django.utils import timezone
 
 DEFAULT_PROFILE_PICTURE_URL = 'https://s3-us-west-2.amazonaws.com/myroadmap.io/images/profiles/nobody.jpg'
 
-
 # date_created = models.DateField(default=timezone.now)
 
-class Person(models.Model):
-    first_name = models.CharField(max_length=30)
-    last_name = models.CharField(max_length=30)
-    # apartment
-    # organization = models.ForeignKey(Organization)
-    # status
-    # gender
-    # picture
-    # calling
-    # notes
+class Organization(models.Model):
+    name = models.CharField(max_length=255)
 
-# class User(models.Model):
+class Person(models.Model):
+    RED = 'RED'
+    YELLOW = 'YELLOW'
+    GREEN = 'GREEN'
+    UNKNOWN = 'UNKNOWN'
+    M = 'MALE'
+    F = 'FEMALE'
+
+    STATUS_OPTIONS = (
+        (RED, 'Red'),
+        (YELLOW, 'Yellow'),
+        (GREEN, 'Green'),
+        (UNKNOWN, 'Unknown'),
+    )
+    first_name = models.CharField(max_length=255)
+    last_name = models.CharField(max_length=255)
+    apartment = models.IntegerField(blank=True, null=True)
+    organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
+    status = models.CharField(
+        max_length=20,
+        choices=STATUS_OPTIONS,
+        default=UNKNOWN,
+    )
+    gender = models.CharField(
+        max_length=20,
+        choices=((M, 'Male'), (F, 'Female')),
+        default=None
+    )
+    calling = models.CharField(max_length=255, blank=True, null=True)
+    notes = models.TextField(blank=True, null=True)
+    photo_url = models.CharField(max_length=255, default=DEFAULT_PROFILE_PICTURE_URL)
 
 # class Meeting(models.Model):
 #     subject (Person)
@@ -30,10 +51,6 @@ class Person(models.Model):
 #     date
 #     confidential
 #     type
-
-# class Organization(models.Model):
-#     name
-#     parent optional
 
 
 # class User(AbstractUser):

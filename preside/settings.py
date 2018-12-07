@@ -26,8 +26,9 @@ SECRET_KEY = 'elu@g!)gko44ykl0tu=*@rx9%3^ihkeszcv(vga42mb!qa36zb'
 DEBUG = True
 
 ALLOWED_HOSTS = [
-    'Preside-env.9getsfiums.us-west-2.elasticbeanstalk.com',
-    'localhost'
+    '',
+    'localhost',
+    'df72a7d9.ngrok.io'
 ]
 
 
@@ -135,7 +136,8 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+STATIC_ROOT = 'static'
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
 # AUTH_USER_MODEL = 'app.User'
 # LOGIN_URL = '/login/'
