@@ -85,6 +85,7 @@ DB_PASSWORD = '123'
 
 if 'IS_AWS' in os.environ:
     DB_HOST = 'preside.c6nkhhnul1tm.us-west-2.rds.amazonaws.com'
+    DB_PASSWORD = 'abc123456'
 else:
     DB_HOST = 'localhost'
 
