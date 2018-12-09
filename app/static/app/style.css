@@ -1,5 +1,43 @@
 body {
-  background-color: #2C3842; }
+  background-color: #2C3842;
+  font-family: 'Open Sans', sans-serif;
+  font-size: 17px; }
+
+.person-card .card-body {
+  padding: 0 15px 15px 15px; }
+
+.person-card .student-card-header {
+  position: relative;
+  top: -18px; }
+  .person-card .student-card-header .name {
+    color: #2C3842;
+    font-size: 1.1em;
+    font-weight: 600;
+    margin-top: 12px; }
+  .person-card .student-card-header .status-dot {
+    width: 20px;
+    height: 20px;
+    border-radius: 50%; }
+  .person-card .student-card-header div.UNKNOWN {
+    background-color: rgba(0, 0, 0, 0.2); }
+  .person-card .student-card-header div.RED {
+    background-color: rgba(255, 30, 0, 0.8); }
+  .person-card .student-card-header div.GREEN {
+    background-color: #19da49; }
+  .person-card .student-card-header div.YELLOW {
+    background-color: rgba(255, 196, 0, 0.8); }
 
 .person-card .person-image {
-  border-radius: 50%; }
+  max-width: 60%;
+  border-radius: 50%;
+  position: relative;
+  box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.2); }
+
+.bg-black {
+  background-color: #141a1e; }
+
+.card-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+  grid-gap: 2rem;
+  grid-row-gap: 2.5rem; }

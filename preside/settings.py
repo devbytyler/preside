@@ -140,5 +140,7 @@ STATIC_URL = '/static/'
 STATIC_ROOT = 'static'
 STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.ManifestStaticFilesStorage'
 
-# AUTH_USER_MODEL = 'app.User'
-# LOGIN_URL = '/login/'
+AUTH_USER_MODEL = 'app.User'
+
+LOGIN_URL = 'sign_in'
+LOGIN_REDIRECT_URL = 'sign_in'

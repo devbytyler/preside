@@ -1,12 +1,61 @@
 $lightGray: #eee;
 $darkGray: #2C3842;
+$black:  #141a1e;
 
 body {
     background-color: $darkGray;
+    font-family: 'Open Sans', sans-serif;
+    font-size: 17px;
 }
 
+
+
 .person-card {
-    .person-image {
-        border-radius: 50%;
+    .card-body {
+        padding: 0 15px 15px 15px;
     }
+    .student-card-header {
+        position: relative;
+        top: -18px;
+        .name {
+            color: $darkGray;
+            font-size: 1.1em;
+            font-weight: 600;
+            margin-top: 12px;
+        }
+        .status-dot {
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+        }
+        div.UNKNOWN {
+            background-color: rgba(0,0,0,0.2)   
+        }
+        div.RED {
+            background-color: rgba(255, 30, 0, 0.8)
+        }
+        div.GREEN {
+            background-color: rgb(25, 218, 73)
+        }
+        div.YELLOW {
+            background-color: rgba(255, 196, 0, 0.8)
+        }
+    }
+    .person-image {
+        max-width: 60%;
+        border-radius: 50%;
+        position: relative;
+        box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.2);
+    }
+}
+
+.bg-black {
+    background-color: $black;
+}
+
+.card-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
+    grid-gap: 2rem;
+    grid-row-gap: 2.5rem;
 }

@@ -4,15 +4,26 @@ import random
 from django.core.management.base import BaseCommand
 from faker import Faker
 
-from app.models import Person, Organization
+from app.models import Person, Organization, User
 
 class Command(BaseCommand):
     help = 'Seed the datas'
 
     def handle(self, *args, **options):
         fake = Faker()
-
+        
         org = Organization.objects.create(name="152 Ward")
+
+        super_user = User.objects.create_superuser('super', 'super@preside.com', '123', first_name="super", last_name="user", organization=org)
+        normal_user = User.objects.create_user(
+            username='user',
+            email='tylerstephens814@gmail.com',
+            password='123',
+            first_name='Tyler',
+            last_name='Stephens',
+            organization=org,
+        )
+
             
         people = []
         for i in range(30):

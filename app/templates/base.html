@@ -14,16 +14,36 @@
 </head>
 
 <body>
-    <div class="main-nav-wrapper">
-        <div class="main-nav-container container navbar navbar-dark navbar-expand-lg">
-            <a href="{% url 'persons' %}">
-                Preside
-            </a>
-            <a href="#">
-                Meetings
-            </a>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-black">
+        <div class="container">
+            <a class="navbar-brand" href="#">Preside</a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            {% if request.user.is_authenticated %}
+            <div class="collapse navbar-collapse" id="navbarText">
+                <ul class="navbar-nav mr-auto">
+                    <li class="nav-item">
+                    <a class="nav-link" href="{% url 'persons' %}">People</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#">Meetings</a>
+                    </li>
+                </ul>
+                <ul class="navbar-nav ml-auto">
+                    <div class="dropdown">
+                        <span class="dropdown-toggle nav-link" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{request.user.get_full_name}}
+                        </span>
+                        <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                            <a class="dropdown-item" href="{% url 'sign_out' %}">Log out</a>
+                        </div> 
+                    </div>
+                </ul>
+            </div>
+            {% endif %}
         </div>
-    </div>
+    </nav>
 
     <div class="wrapper">
         <div class="main-panel main-panel-big">
