@@ -1,20 +1,28 @@
 {% extends "base.html" %}
 
 {% block content %}
-<a class="btn btn-primary" href="{% url 'persons_add' %}">Add Person</a>
+<div class="page-header">People in <span class="org-name">{{request.user.organization}}</span></div>
+
+<a class="btn btn-primary" href="{% url 'persons_add' %}"><i class="fa fa-user-plus mr-2"></i> Add Person</a>
 
 <div class="card-container mt-5">
     {% for person in persons %}
-        <div class="card person-card" >
+        <div class="card person-card">
             <div class="card-body">
                 <div class="student-card-header">
-                    <img class="person-image" src={{person.photo_url}} alt="">
+                    <a href="{% url 'person' person.id %}">
+                        <img class="person-image" src={{person.photo_url}} alt="">
+                    </a>
                     <div class="name d-flex align-items-center">
                         <div class="status-dot {{ person.status }} mr-2"></div>
                         {{person.get_full_name}}
                     </div>
                 </div>
-                other info here
+                <div>Apartment: {{person.apartment}}</div>
+                <div>Calling: {% if person.calling %}{{person.calling}}{% else %}None{% endif %}</div>
+            </div>
+            <div class="card-footer">
+                <span class="label">Last Meeting: </span> {{ person.meetings.first.date }}
             </div>
         </div>
     {% endfor %}

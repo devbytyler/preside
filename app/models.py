@@ -12,6 +12,9 @@ DEFAULT_PROFILE_PICTURE_URL = 'https://s3-us-west-2.amazonaws.com/myroadmap.io/i
 class Organization(models.Model):
     name = models.CharField(max_length=255)
 
+    def __str__(self):
+        return self.name
+
 class Person(models.Model):
     RED = 'RED'
     YELLOW = 'YELLOW'
@@ -68,3 +71,9 @@ class User(AbstractUser):
     def __str__(self):
         return f"{self.get_full_name}"
 
+class Meeting(models.Model):
+    user = models.ForeignKey(User, on_delete=models.SET_NULL, default=None, null=True)
+    person = models.ForeignKey(Person, related_name="meetings", on_delete=models.CASCADE)
+    date = models.DateField(default=datetime.date.today)
+    confidential = models.BooleanField(default=True)
+    notes = models.TextField()

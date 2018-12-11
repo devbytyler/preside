@@ -3,6 +3,20 @@ body {
   font-family: 'Open Sans', sans-serif;
   font-size: 17px; }
 
+.page-header {
+  color: white;
+  font-size: 2em;
+  margin-bottom: 30px;
+  font-weight: 200; }
+  .page-header .org-name {
+    font-weight: bold; }
+
+.person-image {
+  width: 50%;
+  max-width: 150px;
+  border-radius: 50%;
+  box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.2); }
+
 .person-card .card-body {
   padding: 0 15px 15px 15px; }
 
@@ -27,17 +41,72 @@ body {
   .person-card .student-card-header div.YELLOW {
     background-color: rgba(255, 196, 0, 0.8); }
 
-.person-card .person-image {
-  max-width: 60%;
-  border-radius: 50%;
-  position: relative;
-  box-shadow: 3px 1px 6px 0 rgba(0, 0, 0, 0.2); }
+.person-card .card-footer {
+  background: linear-gradient(180deg, rgba(38, 46, 54, 0.1) 0%, rgba(38, 46, 54, 0) 100%); }
 
 .bg-black {
   background-color: #141a1e; }
 
 .card-container {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(225px, 1fr));
-  grid-gap: 2rem;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  grid-gap: 1.5rem;
   grid-row-gap: 2.5rem; }
+
+.person-detail-card {
+  margin: auto;
+  max-width: 70%; }
+  .person-detail-card .student-card-header {
+    display: flex;
+    align-items: flex-end; }
+    .person-detail-card .student-card-header .person-info .person-detail-name {
+      font-size: 2em; }
+  .person-detail-card .nav-pills {
+    border-radius: 6px;
+    overflow: hidden; }
+    .person-detail-card .nav-pills .nav-link {
+      color: #999;
+      border: white solid 1pt;
+      border-radius: 0;
+      border-top: 0;
+      border-bottom: 0;
+      background-color: #eee; }
+      .person-detail-card .nav-pills .nav-link.active {
+        color: white;
+        font-weight: bold; }
+      .person-detail-card .nav-pills .nav-link.UNKNOWN {
+        background-color: rgba(0, 0, 0, 0.2); }
+      .person-detail-card .nav-pills .nav-link.RED {
+        background-color: rgba(255, 30, 0, 0.8); }
+      .person-detail-card .nav-pills .nav-link.YELLOW {
+        background-color: rgba(255, 196, 0, 0.8); }
+      .person-detail-card .nav-pills .nav-link.GREEN {
+        background-color: #19da49; }
+
+.bold-header {
+  color: #2C3842;
+  font-size: 1.1em;
+  font-weight: 600;
+  margin-top: 12px; }
+
+.label {
+  text-transform: uppercase;
+  color: #888;
+  font-size: 0.8em;
+  font-weight: 600;
+  margin: 10px 0; }
+
+.white {
+  color: white; }
+
+.meeting {
+  background-color: #efefef;
+  border-radius: 4px;
+  padding: 10px;
+  margin-bottom: 15px; }
+  .meeting .meeting-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; }
+  .meeting .notes-text {
+    color: #333; }

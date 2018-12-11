@@ -2,6 +2,83 @@
 
 {% block content %}
 
-{{ person }}
+<a class="white" href="{% url 'persons' %} "><i class="fa fa-chevron-left"></i> Back to all people</a>
+
+<div class="card person-detail-card person-card mt-5">
+    <div class="card-body">
+        <div class=""></div>
+        <div class="student-card-header">
+            <img class="person-image" src={{person.photo_url}} alt="">
+            <div class="person-info ml-4">
+                <div class="bold-header person-detail-name">{{ person.get_full_name }}</div>
+                <a class="btn btn-primary mt-3" data-toggle="modal" data-target="#meetingModal">Meet with {{person.first_name}}</a>
+            </div>
+        </div>
+        <div class="mt-3 label">Set status:</div>
+        
+        <nav class="nav nav-pills nav-justified">
+            {% for status in status_options %}
+                <a class="nav-item nav-link {% if status == person.status %}active {{person.status}}{% endif %}" href="{% url 'person_update_status' person.id %}?s={{status}}">{{status}}</a>
+            {% endfor %}
+        </nav>
+
+        <hr>
+        <div class="mt-3 label">Meetings</div>
+        <div class="meetings-container">
+            {% for meeting in meetings %}
+                <div class="meeting">
+                    <div class="meeting-header">
+                        <div>
+                            <span class="label">{{meeting.date}}</span>
+                            {% if meeting.confidential and request.user != meeting.user %}
+                            <span class="label">(met with {{meeting.user.get_full_name}})</span>
+                            {% endif %}
+                            <div></div>
+                        </div>
+                        {% if meeting.confidential and request.user != meeting.user %}
+                            <div class="label">Confidential<i class="fa fa-lock ml-1"></i></div>                     
+                        {% endif %}
+                    </div>
+                    
+                    {% if not meeting.confidential or request.user == meeting.user %}
+                        <div class="notes-text mt-1">{{meeting.notes}}</div>
+                    {% endif %}
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="meetingModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+  <div class="modal-dialog modal-lg" role="document">
+    <div class="modal-content">
+        <form method="post" autocomplete="off">
+            {% csrf_token %}
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Meeting with {{person.first_name}}</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                {{meeting_form.as_p}}
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Save changes</button>
+            </div>
+        </form>
+    </div>
+  </div>
+</div>
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+<script>
+    $(document).ready(()=>{
+        console.log($( "#id_date" ));
+        $( "#id_date" ).datepicker();
+    })
+</script>
 
 {% endblock content %}
