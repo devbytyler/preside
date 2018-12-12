@@ -1,7 +1,7 @@
 body {
   background-color: #2C3842;
   font-family: 'Open Sans', sans-serif;
-  font-size: 17px; }
+  font-size: 15px; }
 
 .page-header {
   color: white;
@@ -32,14 +32,14 @@ body {
     width: 20px;
     height: 20px;
     border-radius: 50%; }
-  .person-card .student-card-header div.UNKNOWN {
+  .person-card .student-card-header div.status-4 {
     background-color: rgba(0, 0, 0, 0.2); }
-  .person-card .student-card-header div.RED {
+  .person-card .student-card-header div.status-1 {
     background-color: rgba(255, 30, 0, 0.8); }
-  .person-card .student-card-header div.GREEN {
-    background-color: #19da49; }
-  .person-card .student-card-header div.YELLOW {
+  .person-card .student-card-header div.status-2 {
     background-color: rgba(255, 196, 0, 0.8); }
+  .person-card .student-card-header div.status-3 {
+    background-color: #19da49; }
 
 .person-card .card-footer {
   background: linear-gradient(180deg, rgba(38, 46, 54, 0.1) 0%, rgba(38, 46, 54, 0) 100%); }
@@ -58,30 +58,42 @@ body {
   max-width: 70%; }
   .person-detail-card .student-card-header {
     display: flex;
-    align-items: flex-end; }
+    align-items: flex-start; }
     .person-detail-card .student-card-header .person-info .person-detail-name {
       font-size: 2em; }
   .person-detail-card .nav-pills {
     border-radius: 6px;
-    overflow: hidden; }
+    overflow: hidden;
+    max-width: 400px; }
     .person-detail-card .nav-pills .nav-link {
       color: #999;
       border: white solid 1pt;
       border-radius: 0;
       border-top: 0;
       border-bottom: 0;
-      background-color: #eee; }
+      background-color: #eee;
+      margin-bottom: 2px; }
+      .person-detail-card .nav-pills .nav-link:hover {
+        background-color: #d5d5d5; }
       .person-detail-card .nav-pills .nav-link.active {
         color: white;
         font-weight: bold; }
-      .person-detail-card .nav-pills .nav-link.UNKNOWN {
+      .person-detail-card .nav-pills .nav-link.status-4 {
         background-color: rgba(0, 0, 0, 0.2); }
-      .person-detail-card .nav-pills .nav-link.RED {
+        .person-detail-card .nav-pills .nav-link.status-4:hover {
+          background-color: rgba(0, 0, 0, 0.2); }
+      .person-detail-card .nav-pills .nav-link.status-1 {
         background-color: rgba(255, 30, 0, 0.8); }
-      .person-detail-card .nav-pills .nav-link.YELLOW {
+        .person-detail-card .nav-pills .nav-link.status-1:hover {
+          background-color: rgba(204, 24, 0, 0.8); }
+      .person-detail-card .nav-pills .nav-link.status-2 {
         background-color: rgba(255, 196, 0, 0.8); }
-      .person-detail-card .nav-pills .nav-link.GREEN {
+        .person-detail-card .nav-pills .nav-link.status-2:hover {
+          background-color: rgba(204, 157, 0, 0.8); }
+      .person-detail-card .nav-pills .nav-link.status-3 {
         background-color: #19da49; }
+        .person-detail-card .nav-pills .nav-link.status-3:hover {
+          background-color: #14ac3a; }
 
 .bold-header {
   color: #2C3842;
@@ -98,6 +110,8 @@ body {
 
 .white {
   color: white; }
+  .white:hover {
+    color: #e6e6e6; }
 
 .meeting {
   background-color: #efefef;
@@ -110,3 +124,66 @@ body {
     align-items: center; }
   .meeting .notes-text {
     color: #333; }
+
+.toolbar {
+  justify-content: space-between;
+  align-items: center; }
+
+.sort-dropdown #dropdownMenuButton {
+  color: rgba(255, 255, 255, 0.7);
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  padding: 10px;
+  font-weight: 600;
+  font-size: 0.8em;
+  letter-spacing: 1px;
+  white-space: nowrap;
+  text-transform: uppercase; }
+  .sort-dropdown #dropdownMenuButton:hover {
+    background-color: rgba(230, 230, 230, 0.1);
+    cursor: pointer; }
+  .sort-dropdown #dropdownMenuButton:after {
+    color: #FFFFFF; }
+  .sort-dropdown #dropdownMenuButton .current-selection-label {
+    margin-left: 10px;
+    color: #FFFFFF;
+    font-weight: bold; }
+
+.sort-dropdown .dropdown-menu {
+  border-radius: 6px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.25);
+  border: none;
+  padding: 0;
+  overflow: hidden; }
+  .sort-dropdown .dropdown-menu .dropdown-item {
+    font-weight: 600;
+    color: #A7A9AB;
+    font-size: 0.8em;
+    text-transform: uppercase;
+    padding: 14px 16px;
+    border-bottom: 1pt solid #ddd;
+    display: flex;
+    align-items: center;
+    justify-content: space-between; }
+    .sort-dropdown .dropdown-menu .dropdown-item .fas {
+      color: #19da49; }
+  .sort-dropdown .dropdown-menu .selected {
+    color: black; }
+
+.slim-card {
+  max-width: 500px;
+  margin: auto; }
+
+.person-actions {
+  right: 20px; }
+  .person-actions .fas {
+    color: #aaa; }
+    .person-actions .fas:hover {
+      color: #919191; }
+
+.card-link {
+  text-decoration: none;
+  color: #141a1e; }
+  .card-link:hover {
+    background-color: #eee;
+    color: #141a1e; }

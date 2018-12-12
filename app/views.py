@@ -43,25 +43,25 @@ def persons(request):
     SORT_BY_OPTIONS['last_name'] = 'Last Name'
     SORT_BY_OPTIONS['apartment'] = 'Apartment'
     SORT_BY_OPTIONS['status'] = 'Status'
-    # SORT_BY_OPTIONS['last_meeting'] = 'Last meeting'
+    SORT_BY_OPTIONS['gender'] = 'Gender'
+    SORT_BY_OPTIONS['meetings'] = 'Last meeting'
 
-    # sort_by = request.GET.get('sort_by') or 'first_name'
-
+    sort_by = request.GET.get('sort_by') or 'first_name'
 
     latest_meeting_pks = Meeting.objects.all().values('person').annotate(max_id=Max('id')).values_list('max_id', flat=True)
-    print(latest_meeting_pks)
-
     persons = Person.objects.prefetch_related(Prefetch(
         "meetings",
         queryset=Meeting.objects.filter(pk__in=latest_meeting_pks),
     )).filter(organization=request.user.organization)
 
-
-
-    for person in persons:
-        print(person.meetings.first())
+    if sort_by == 'meetings':
+        persons = sorted(list(persons), key=lambda x: x.meetings.first().id if x.meetings.first() else 0, reverse=True)
+    else:
+        persons = persons.order_by(sort_by)
 
     context = {
+        'sort_by_options': SORT_BY_OPTIONS,
+        'current_sort_name': SORT_BY_OPTIONS.get(sort_by) if sort_by else None,
         'persons': persons,
     }
 
@@ -70,7 +70,7 @@ def persons(request):
 @login_required
 def person(request, person_id):
     person = get_object_or_404(Person, pk=person_id)
-    status_options = [Person.UNKNOWN, Person.RED, Person.YELLOW, Person.GREEN]
+    status_options = Person.STATUS_OPTIONS
     meetings = Meeting.objects.filter(person=person).order_by("-id")
     if request.method == 'POST':
         form = forms.MeetingForm(request.POST, request=request,  instance=None)
@@ -108,6 +108,7 @@ def add_edit_person(request, person_id=None):
         form = forms.PersonForm(instance=person)
         context = {
             'form': form,
+            'person': person
         }
     return render(request, 'person_add_edit.html', context)
 
@@ -132,6 +133,14 @@ def meetings(request):
     }
 
     return render(request, 'meetings.html', context)
+
+
+@login_required
+def delete_person(request, person_id):
+    person = get_object_or_404(Person, pk=person_id) if person_id else None
+    person.delete()
+    return redirect('persons')
+
 
 # @login_required
 # def add_edit_meeting(request, meeting_id):

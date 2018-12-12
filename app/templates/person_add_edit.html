@@ -2,14 +2,22 @@
 
 {% block content %}
 
-<div class="card">
-    <div class="card-body">
-        <form method="post">
-            {% csrf_token %}
-            {{ form.as_p }}
+<div class="card slim-card">
+    <form method="post">
+        <div class="card-header">{% if person %}Edit{% else %}Add{% endif %} Person</div>
+        <div class="card-body">
+                {% csrf_token %}
+                {{ form.as_p }}
+        </div>
+        <div class="card-footer">
             <button type="submit" class="btn btn-success">Save</button>
-        </form>
-    </div>
+            <a href="{% if person %}
+                {% url 'person' person.id %}
+            {% else %}
+                {% url 'persons' %}
+            {% endif %}" class="btn btn-danger">Cancel</a>
+        </div>
+    </form>
 </div>
 
 

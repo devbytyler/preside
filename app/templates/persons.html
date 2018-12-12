@@ -3,27 +3,43 @@
 {% block content %}
 <div class="page-header">People in <span class="org-name">{{request.user.organization}}</span></div>
 
-<a class="btn btn-primary" href="{% url 'persons_add' %}"><i class="fa fa-user-plus mr-2"></i> Add Person</a>
+<div class="d-flex toolbar">
+    <a class="btn btn-primary" href="{% url 'persons_add' %}"><i class="fa fa-user-plus mr-2"></i> Add Person</a>
+
+    <form action="">
+        <div class="dropdown sort-dropdown">
+            <div class="dropdown-toggle" id="dropdownMenuButton" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                Sort By: <span class="current-selection-label">{{ current_sort_name }}</span>
+            </div>
+            <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+                {% for k,v in sort_by_options.items %}
+                    <a class="dropdown-item {% if current_sort_name == v %}selected{% endif %}" href="?sort_by={{ k }}">{{ v }}{% if current_sort_name == v %}<i class="fas fa-check"></i>{% endif %}</a>
+                {% endfor %}
+            </div>
+        </div>  
+    </form>
+</div>
+
 
 <div class="card-container mt-5">
     {% for person in persons %}
         <div class="card person-card">
+                    <a class="card-link" href="{% url 'person' person.id %}">
             <div class="card-body">
                 <div class="student-card-header">
-                    <a href="{% url 'person' person.id %}">
                         <img class="person-image" src={{person.photo_url}} alt="">
-                    </a>
                     <div class="name d-flex align-items-center">
-                        <div class="status-dot {{ person.status }} mr-2"></div>
+                        <div class="status-dot status-{{ person.status }} mr-2"></div>
                         {{person.get_full_name}}
                     </div>
                 </div>
                 <div>Apartment: {{person.apartment}}</div>
                 <div>Calling: {% if person.calling %}{{person.calling}}{% else %}None{% endif %}</div>
             </div>
-            <div class="card-footer">
-                <span class="label">Last Meeting: </span> {{ person.meetings.first.date }}
+            <div class="card-footer d-flex justify-content-between align-items-center">
+                <span class="label">Last Meeting:</span><span>{{ person.meetings.first.date }}</span> 
             </div>
+                    </a>
         </div>
     {% endfor %}
 </div>

@@ -1,12 +1,37 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="card">
-    <form id="sign-in-form" method="post" action="{% url 'sign_in' %}">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button class="btn btn-primary" type="submit">Log in</button>
-    </form>
+<div class="card slim-card">
+    <div class="card-header">Sign in</div>
+    <div class="card-body">
+        <form id="sign-in-form" method="post" action="{% url 'sign_in' %}">
+            {% csrf_token %}
+            {{form.as_p}}
+            <button class="btn btn-primary" type="submit">Log in</button>
+        </form>
+
+        <p class="mt-5">
+            <strong>**Grader Note:</strong>
+            This app is intended to give leaders (especially YSA bishops), a better way to keep their people from falling through
+            the cracks. It provides a bird's eye view for how each person is doing, and a history of their progress. 
+        </p>
+        <p>
+            Due to confidentiality being a key factor, I have created demo data with 2 logins:
+        </p>
+        <hr>
+        <div>
+            Username: user <br>
+            Password: 123
+        </div>
+        <hr>
+        <div>
+             Username: user2 <br>
+            Password: 123
+        </div>
+        <hr>
+    </div>
+
+    
 </div>
 {% endblock content %}
 

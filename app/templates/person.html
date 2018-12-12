@@ -4,26 +4,32 @@
 
 <a class="white" href="{% url 'persons' %} "><i class="fa fa-chevron-left"></i> Back to all people</a>
 
-<div class="card person-detail-card person-card mt-5">
+<div class="card person-detail-card mt-5">
     <div class="card-body">
-        <div class=""></div>
+        <div class="position-absolute d-flex justify-content-end person-actions">
+            <a href="{% url 'person_edit' person.id %}"><i class="fas fa-user-edit mx-2"></i></a>
+            <a href="{% url 'person_delete' person.id %}"><i class="fas fa-trash-alt"></i></a>
+        </div>
         <div class="student-card-header">
             <img class="person-image" src={{person.photo_url}} alt="">
             <div class="person-info ml-4">
                 <div class="bold-header person-detail-name">{{ person.get_full_name }}</div>
-                <a class="btn btn-primary mt-3" data-toggle="modal" data-target="#meetingModal">Meet with {{person.first_name}}</a>
+                <p class="person-notes">{{person.notes}}</p>
             </div>
         </div>
+        
         <div class="mt-3 label">Set status:</div>
         
         <nav class="nav nav-pills nav-justified">
-            {% for status in status_options %}
-                <a class="nav-item nav-link {% if status == person.status %}active {{person.status}}{% endif %}" href="{% url 'person_update_status' person.id %}?s={{status}}">{{status}}</a>
+            {% for k,v in status_options %}
+                <a class="nav-item nav-link {% if k == person.status %}active status-{{k}}{% endif %}" href="{% url 'person_update_status' person.id %}?s={{k}}">{{v}}</a>
             {% endfor %}
         </nav>
 
-        <hr>
-        <div class="mt-3 label">Meetings</div>
+        <div class="d-flex justify-content-between mb-2 mt-4 align-items-end">
+            <div class="label">Meetings</div>
+            <div class="btn btn-outline-primary" data-toggle="modal" data-target="#meetingModal"><i class="fa fa-plus mr-2"></i> New meeting</div>
+        </div>
         <div class="meetings-container">
             {% for meeting in meetings %}
                 <div class="meeting">
@@ -31,7 +37,7 @@
                         <div>
                             <span class="label">{{meeting.date}}</span>
                             {% if meeting.confidential and request.user != meeting.user %}
-                            <span class="label">(met with {{meeting.user.get_full_name}})</span>
+                            <span class="label"> - (met with {{meeting.user.get_full_name}})</span>
                             {% endif %}
                             <div></div>
                         </div>

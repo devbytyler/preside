@@ -9,7 +9,7 @@ $green: rgb(25, 218, 73);
 body {
     background-color: $darkGray;
     font-family: 'Open Sans', sans-serif;
-    font-size: 17px;
+    font-size: 15px;
 }
 
 .page-header {
@@ -47,17 +47,17 @@ body {
             height: 20px;
             border-radius: 50%;
         }
-        div.UNKNOWN {
+        div.status-4 {
             background-color: rgba(0,0,0,0.2)   
         }
-        div.RED {
+        div.status-1 {
             background-color: rgba(255, 30, 0, 0.8)
         }
-        div.GREEN {
-            background-color: rgb(25, 218, 73)
-        }
-        div.YELLOW {
+        div.status-2 {
             background-color: rgba(255, 196, 0, 0.8)
+        }
+        div.status-3 {
+            background-color: rgb(25, 218, 73)
         }
     }
     .card-footer {
@@ -81,8 +81,8 @@ body {
     max-width: 70%;
     .student-card-header {
         display: flex;
-        align-items: flex-end;
-        .person-info{
+        align-items: flex-start;
+        .person-info {
             .person-detail-name {
                 font-size: 2em;
             }
@@ -91,6 +91,7 @@ body {
     .nav-pills {
         border-radius: 6px;
         overflow: hidden;
+        max-width: 400px;
         .nav-link {
             color: #999;
             border: white solid 1pt;
@@ -98,21 +99,37 @@ body {
             border-top: 0;
             border-bottom: 0;
             background-color: $lightGray;
+            margin-bottom: 2px;
+            &:hover{
+                background-color: darken($lightGray, 10)
+            }
             &.active{
                 color: white;
                 font-weight: bold;
             }
-            &.UNKNOWN {
+            &.status-4 {
                 background-color: $unknown;
+                &:hover{
+                    background-color: darken($unknown, 10)
+                }
             }
-            &.RED {
+            &.status-1 {
                 background-color:$red;
+                &:hover{
+                    background-color: darken($red, 10)
+                }
             }
-            &.YELLOW {
+            &.status-2 {
                 background-color:$yellow;
+                &:hover{
+                    background-color: darken($yellow, 10)
+                }
             }
-            &.GREEN {
+            &.status-3 {
                 background-color:$green;
+                &:hover{
+                    background-color: darken($green, 10)
+                }
             }
         }
     }
@@ -135,6 +152,9 @@ body {
 
 .white {
     color: white;
+    &:hover {
+        color: darken(white, 10);
+    }
 }
 
 .meeting {
@@ -149,5 +169,85 @@ body {
     }
     .notes-text {
         color: #333;
+    }
+}
+
+.toolbar {
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sort-dropdown {
+    #dropdownMenuButton {
+        color: rgba(255,255,255,0.7);   
+        background-color: rgba(255,255,255,0.1);
+        border-radius: 6px;
+        padding: 10px;
+        font-weight: 600;
+        font-size: 0.8em;
+        letter-spacing: 1px;
+        white-space: nowrap;
+        text-transform: uppercase;
+        &:hover {
+            background-color: darken(rgba(255,255,255,0.1), 10);
+            cursor: pointer;
+        }
+        &:after {
+            color: #FFFFFF;
+        }
+        .current-selection-label {
+            margin-left: 10px;
+            color: #FFFFFF;
+            font-weight: bold;
+        }
+    }
+
+    .dropdown-menu {
+        border-radius: 6px;
+        box-shadow: 0 0 10px 0 rgba(0,0,0,0.25);
+        border: none;
+        padding: 0;
+        overflow: hidden;
+        .dropdown-item {
+            font-weight: 600;
+            color: #A7A9AB;
+            font-size: 0.8em;
+            text-transform: uppercase;
+            padding: 14px 16px;
+            border-bottom: 1pt solid #ddd;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            .fas {
+                color: $green;
+            }
+        }
+        .selected{
+            color: black;
+        }
+    }
+}
+
+.slim-card{
+    max-width: 500px;
+    margin:auto;
+}
+
+.person-actions {
+    right: 20px;
+    .fas {
+        color: #aaa;
+        &:hover {
+            color: darken(#aaa, 10);
+        }
+    }
+}
+
+.card-link{
+    text-decoration: none;
+    color: $black;
+    &:hover {
+        background-color: #eee;
+        color: $black;
     }
 }

@@ -16,10 +16,10 @@ class Organization(models.Model):
         return self.name
 
 class Person(models.Model):
-    RED = 'RED'
-    YELLOW = 'YELLOW'
-    GREEN = 'GREEN'
-    UNKNOWN = 'UNKNOWN'
+    RED = '1'
+    YELLOW = '2'
+    GREEN = '3'
+    UNKNOWN = '4'
     M = 'MALE'
     F = 'FEMALE'
 
@@ -69,7 +69,7 @@ class User(AbstractUser):
     organization = models.ForeignKey(Organization, on_delete=models.CASCADE)
 
     def __str__(self):
-        return f"{self.get_full_name}"
+        return self.get_full_name()
 
 class Meeting(models.Model):
     user = models.ForeignKey(User, on_delete=models.SET_NULL, default=None, null=True)

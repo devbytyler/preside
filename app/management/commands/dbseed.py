@@ -52,7 +52,8 @@ class Command(BaseCommand):
                 apartment=random.randint(1,24),
                 organization=org,
                 gender=gender,
-                photo_url=photo_url
+                photo_url=photo_url,
+                notes=fake.paragraph() + ' ' + fake.paragraph()
             )
             people.append(person)
         Person.objects.bulk_create(people)
