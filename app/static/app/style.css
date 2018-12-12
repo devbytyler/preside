@@ -62,16 +62,13 @@ body {
     .person-detail-card .student-card-header .person-info .person-detail-name {
       font-size: 2em; }
   .person-detail-card .nav-pills {
-    border-radius: 6px;
-    overflow: hidden;
-    max-width: 400px; }
+    max-width: 400px;
+    padding: 3px; }
     .person-detail-card .nav-pills .nav-link {
       color: #999;
-      border: white solid 1pt;
-      border-radius: 0;
-      border-top: 0;
-      border-bottom: 0;
-      background-color: #eee;
+      border: #ddd solid 1pt;
+      margin-right: 2px;
+      border-radius: 4px;
       margin-bottom: 2px; }
       .person-detail-card .nav-pills .nav-link:hover {
         background-color: #d5d5d5; }
